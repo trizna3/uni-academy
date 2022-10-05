@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uni-academy
+spec:
+  selector:
+    matchLabels:
+      app: uni-academy
+  template:
+    metadata:
+      labels:
+        app: uni-academy
+    spec:
+      containers:
+      - name: uni-academy
+        image:  acruniacademy.azurecr.io/uni-academy
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
