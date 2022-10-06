@@ -4,23 +4,22 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 bases:
   - "../base"
 
-namespace: alysina-dev
+namespace: alysina
 
 replicas:
   - name: uni-academy
-    count: 1
+    count: 3
 
 images:
   - name: acruniacademy.azurecr.io/uni-academy
-    newTag: 1.0.0-dev
+    newTag: 1.0.0
 
 patches:
+  - path: './resource_request.patch.yaml'
+    target:
+      kind: Deployment
+      name: uni-academy
   - path: './config.patch.yaml'
     target:
       kind: ConfigMap
       name: uni-academy
-  # TODO: fix
-  # - patch: './ingress.patch.yaml'
-  #   target:
-  #     kind: Ingress
-  #     name: uni-academy

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "uni-academy.labels" . |  nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+    {{- if .Values.serviceAccount.create }}
+      serviceAccount: {{ template "uni-academy.serviceAccountName" . }}
+    {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ .Release.Name }}
+      containers:
+      - name: uni-academy
+        image:  {{ template "uni-academy.image" . }}
+        volumeMounts:
+          - mountPath: /app/
+            name: config
+        resources:
+          {{- include "uni-academy.resources" .Values.resources | nindent 10}}
+        ports:
+        - containerPort: {{ .Values.uniAppPort }}

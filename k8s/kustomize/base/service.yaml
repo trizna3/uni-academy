@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: uni-academy
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: uni-academy
   ports:

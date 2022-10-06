@@ -11,12 +11,20 @@ spec:
       labels:
         app: uni-academy
     spec:
+      serviceAccount: uni-academy
+      volumes:
+        - name: config
+          configMap:
+            name: uni-academy
       containers:
       - name: uni-academy
         image:  acruniacademy.azurecr.io/uni-academy
+        volumeMounts:
+          - mountPath: /app/
+            name: config
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "100m"
         ports:
         - containerPort: 3000

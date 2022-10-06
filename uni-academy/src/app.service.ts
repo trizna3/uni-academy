@@ -13,7 +13,7 @@ export class AppService {
     const kc = new KubeConfig();
 
     try {
-      kc.loadFromDefault();
+      kc.loadFromCluster();
       this.appv1Client = kc.makeApiClient(AppsV1Api);
       this.coreV1Client = kc.makeApiClient(CoreV1Api);
       this.logger.log('K8s clients created');
@@ -40,7 +40,7 @@ export class AppService {
 
   async getPods(namespace): Promise<any> {
     try {
-      return await this.coreV1Client.listNamespacedPod(namespace);
+      return this.coreV1Client.listNamespacedPod(namespace);
     } catch (error) {
       this.logger.warn(error);
     }
@@ -50,7 +50,7 @@ export class AppService {
   getConfig(): any {
     try {
       const f = readFileSync('/app/config.json')
-      return JSON.parse(f.toString())
+      return f.toString()
     } catch (error) {
       this.logger.warn(error)
     }

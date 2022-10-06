@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: uni-academy
+  name: {{ .Release.Name }}
 data: 
   config.json: |
-    { app: 'uni-academy' }
+    {{ .Values.appConfig | toJson }}
  

@@ -1,0 +1,3 @@
+- op: replace
+  path: /data/config.json
+  value: "{ app: \"uni-academy-production\", variable: \"newvar-production\" }"

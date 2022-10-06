@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: uni-academy-service
+rules:
+- apiGroups: ["*"] # empty "" api group indicates the core API group
+  resources: ["pods","deployments"]
+  verbs: ["get","list"]
