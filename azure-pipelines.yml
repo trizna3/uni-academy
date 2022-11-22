@@ -11,6 +11,10 @@ pool:
 
 steps:
 
+- script: |
+    az version
+  displayName: "Get az version"
+
 - task: AzureCLI@2
   displayName: Build and push docker image'
   inputs:
