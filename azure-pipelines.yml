@@ -17,6 +17,10 @@ steps:
   displayName: 'Move to working directory'
 
 - script: |
+    npm version
+  displayName: 'Get npm version'
+
+- script: |
     npm install
     npm run build
   displayName: 'Build application'
