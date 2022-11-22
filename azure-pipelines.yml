@@ -21,11 +21,13 @@ steps:
   displayName: 'Get npm version'
 
 - script: |
+    cd ./uni-academy
     npm install
     npm run build
   displayName: 'Build application'
 
 - script: |
+    cd ./uni-academy
     docker build -t uni-academy .
     docker tag uni-academy triznaacr.azurecr.io/uni-academy:v1
     docker push triznaacr.azurecr.io/uni-academy:v1
