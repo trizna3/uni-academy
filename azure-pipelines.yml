@@ -11,25 +11,14 @@ pool:
 
 steps:
 
-- script: |
-    cd ./uni-academy
-    ls -la
-  displayName: 'Move to working directory'
-
-- script: |
-    npm version
-  displayName: 'Get npm version'
-
-- script: |
-    cd ./uni-academy
-    npm install
-    npm run build
-  displayName: 'Build application'
-
-- script: |
-    cd ./uni-academy
-    docker build -t uni-academy .
-    docker tag uni-academy triznaacr.azurecr.io/uni-academy:v1
-    az acr login --name triznaacr
-    docker push triznaacr.azurecr.io/uni-academy:v1
-  displayName: 'Build and push docker image'
+- task: AzureCLI@2
+  displayName: Build and push docker image'
+  inputs:
+    azureSubscription: TriznaRG-ACR-service-connection
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+      cd ./uni-academy
+      docker build -t uni-academy .
+      docker tag uni-academy triznaacr.azurecr.io/uni-academy:v1
+      docker push triznaacr.azurecr.io/uni-academy:v1
