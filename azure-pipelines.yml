@@ -12,6 +12,10 @@ pool:
 steps:
 
 - script: |
+    ls -la
+  displayName: 'List working directory'
+
+- script: |
     npm install
     npm run build
   displayName: 'Build application'
