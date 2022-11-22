@@ -12,8 +12,9 @@ pool:
 steps:
 
 - script: |
+    cd ./uni-academy
     ls -la
-  displayName: 'List working directory'
+  displayName: 'Move to working directory'
 
 - script: |
     npm install
