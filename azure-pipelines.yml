@@ -23,7 +23,7 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       cd ./uni-academy
-      /usr/bin/az acr login --name triznaacr
+      az acr login --name triznaacr
       docker build -t uni-academy .
       docker tag uni-academy triznaacr.azurecr.io/uni-academy:v1
       docker push triznaacr.azurecr.io/uni-academy:v1
