@@ -12,16 +12,14 @@ pool:
 steps:
 
 - script: |
-    sudo apt-get update
-    sudo apt-get install az
     az version
-  displayName: "get az"
+  displayName: "get az version"
 
 - task: AzureCLI@2
   displayName: Build and push docker image'
   inputs:
     azureSubscription: TriznaRG-ACR-service-connection
-    scriptType: bash
+    scriptType: ps
     scriptLocation: inlineScript
     inlineScript: |
       cd ./uni-academy
