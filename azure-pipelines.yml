@@ -12,13 +12,10 @@ pool:
 steps:
 
 - script: |
-    ls /usr/bin/
+    sudo apt-get update
+    sudo apt-get install az
     az version
-  displayName: "List binaries"
-
-- script: |
-    az version
-  displayName: "Get az version"
+  displayName: "get az"
 
 - task: AzureCLI@2
   displayName: Build and push docker image'
