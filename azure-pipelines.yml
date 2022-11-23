@@ -12,6 +12,11 @@ pool:
 steps:
 
 - script: |
+    ls /usr/bin/
+    az version
+  displayName: "List binaries"
+
+- script: |
     az version
   displayName: "Get az version"
 
