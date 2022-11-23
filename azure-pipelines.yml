@@ -19,7 +19,7 @@ steps:
   displayName: Build and push docker image'
   inputs:
     azureSubscription: TriznaRG-ACR-service-connection
-    scriptType: ps
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       cd ./uni-academy
